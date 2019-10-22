@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "512195515066",
+    "firebase_url": "https://appeasylistweb-d5251.firebaseio.com",
+    "project_id": "appeasylistweb-d5251",
+    "storage_bucket": "appeasylistweb-d5251.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:512195515066:android:964aafe460e5be65b46883",
+        "android_client_info": {
+          "package_name": "com.adalto.easylist"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "512195515066-5l1e3jfrsgcqhpb1l5r89bkaivnob91i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxZYqjhl8xXqkOlyhJr7tUrLvWmRciT9k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "512195515066-5l1e3jfrsgcqhpb1l5r89bkaivnob91i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

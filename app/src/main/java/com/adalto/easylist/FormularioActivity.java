@@ -51,31 +51,12 @@ public class FormularioActivity extends AppCompatActivity {
             alerta.setPositiveButton("OK", null);
             alerta.show();
         }else {
-            Produto p = new Produto();
 
-            p.setNome( nome );
-            if( qtd.isEmpty() ){
-                p.setQuantidade( 0 );
-            }else {
-                p.setQuantidade( Double.valueOf( qtd ) );
-            }
-
-            if( acao.equals("inserir")) {
-                ProdutoDAO.inserir(this, p);
-            }
-            if( acao.equals("editar")) {
-                p.setId( idProduto );
-                ProdutoDAO.editar(this, p);
-            }
-
-            this.finish();
         }
     }
 
     private void carregarFormulario(int idProduto){
-        Produto prod = ProdutoDAO.getProdutoById(this, idProduto);
-        etNome.setText( prod.getNome() );
-        etQuantidade.setText( String.valueOf( prod.getQuantidade() ) );
+
 
     }
 
