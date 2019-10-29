@@ -3,6 +3,7 @@ package com.adalto.easylist;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,6 +23,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth auth;
     private FirebaseUser usuario;
+    private FirebaseAuth.AuthStateListener authStateListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,24 @@ public class LoginActivity extends AppCompatActivity {
         etSenha = findViewById(R.id.etSenha);
         btnCadastro = findViewById(R.id.btnCadastro);
         btnEntrar = findViewById(R.id.btnEntrar);
+
+        auth = FirebaseAuth.getInstance();
+
+        authStateListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                  usuario = auth.getCurrentUser();
+                  if (usuario != null ){
+                      Intent intent = new Intent(LoginActivity.this,
+                              MainActivity.class);
+                      startActivity(intent);
+                  }else {
+                      Toast.makeText(LoginActivity.this,
+                              "Erro ao fazer login", Toast.LENGTH_LONG ).show();
+                  }
+            }
+        };
+
 
         btnEntrar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,7 +74,7 @@ public class LoginActivity extends AppCompatActivity {
         String senha = etSenha.getText().toString();
 
         if( ! email.isEmpty() ){
-            auth = FirebaseAuth.getInstance();
+
 
             auth.createUserWithEmailAndPassword(email, senha).
                     addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -71,15 +91,18 @@ public class LoginActivity extends AppCompatActivity {
         String email = etEmail.getText().toString();
         String senha = etSenha.getText().toString();
         if (  ! email.isEmpty() && !senha.isEmpty() ){
-            auth = FirebaseAuth.getInstance();
+       //     auth = FirebaseAuth.getInstance();
             auth.signInWithEmailAndPassword(email, senha).
                     addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
+
                             if( ! task.isSuccessful() ){
                                 Toast.makeText(LoginActivity.this,
                                         "Erro ao logar",
                                         Toast.LENGTH_LONG).show();
+                            }else {
+
                             }
                         }
                     });

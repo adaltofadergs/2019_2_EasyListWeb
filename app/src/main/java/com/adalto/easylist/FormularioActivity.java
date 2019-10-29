@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class FormularioActivity extends AppCompatActivity {
 
     private EditText etNome, etQuantidade;
@@ -51,6 +54,20 @@ public class FormularioActivity extends AppCompatActivity {
             alerta.setPositiveButton("OK", null);
             alerta.show();
         }else {
+            Produto prod = new Produto();
+            prod.setNome( nome );
+
+            if (qtd.isEmpty()){
+                prod.setQuantidade(0);
+            }else {
+                qtd = qtd.replace(",",".");
+                prod.setQuantidade( Double.valueOf( qtd ) );
+            }
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference reference = database.getReference();
+            reference.child("produtos").push().setValue(prod);
+
+            finish();
 
         }
     }

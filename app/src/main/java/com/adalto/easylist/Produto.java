@@ -5,6 +5,15 @@ public class Produto {
     private int id;
     private String nome;
     private double quantidade;
+    private String key;
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
 
     public int getId() {
         return id;
